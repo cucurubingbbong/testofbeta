@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JobRoadMap | JD 기반 학습 로드맵</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="hero">
+    <div class="hero__copy">
+        <p class="eyebrow">데이터 기반 맞춤 IT 학습 가이드</p>
+        <h1>채용 공고를 붙여넣으면 <span>AI</span>가 주차별 학습 로드맵을 짜줍니다</h1>
+        <p class="sub">실제 JD에서 키워드를 추출하고, 선수지식 → 핵심기술 → 실무스택 → 보너스스킬 순으로 정돈된 커리큘럼을 바로 받아보세요.</p>
+        <div class="chips">
+            <span class="chip">JD 파서</span>
+            <span class="chip">맞춤 로드맵</span>
+            <span class="chip">주차별 미션</span>
+            <span class="chip">크롤링 기반 키워드</span>
+        </div>
+    </div>
+    <div class="hero__panel">
+        <h2>빠른 생성</h2>
+        <textarea id="jdText" rows="5" placeholder="채용 공고 텍스트를 붙여넣으세요."></textarea>
+        <div class="grid-2">
+            <label class="field">
+                <span>준비 기간 (개월)</span>
+                <input type="number" id="duration" min="1" max="12" value="6">
+            </label>
+            <label class="field">
+                <span>하루 학습 시간</span>
+                <input type="number" id="hours" min="1" max="8" value="3">
+            </label>
+        </div>
+        <label class="field">
+            <span>현재 실력</span>
+            <select id="level">
+                <option>완전 입문</option>
+                <option>문법만 살짝</option>
+                <option>토이 프로젝트 1개</option>
+                <option>사이드 프로젝트 경험 있음</option>
+            </select>
+        </label>
+        <div class="actions">
+            <button id="generate">로드맵 생성하기</button>
+            <button id="fillSample" class="ghost">샘플 JD 불러오기</button>
+        </div>
+        <p class="hint">8080 포트에서 백엔드가 실행 중이어야 합니다.</p>
+        <p id="formStatus" class="status"></p>
+    </div>
+</header>
+
+<main>
+    <section class="panel" id="roadmapSection">
+        <div class="panel__header">
+            <div>
+                <p class="eyebrow">주차별 학습 플랜</p>
+                <h2>로드맵 결과</h2>
+            </div>
+            <div class="meta" id="roadmapMeta"></div>
+        </div>
+        <div id="roadmap" class="timeline empty">JD를 입력하고 로드맵을 생성해 보세요.</div>
+    </section>
+
+    <section class="panel" id="crawlSection">
+        <div class="panel__header">
+            <div>
+                <p class="eyebrow">데일리 크롤링</p>
+                <h2>요즘 뜨는 키워드 & 공고</h2>
+            </div>
+            <div class="actions">
+                <button id="fetchPosts">크롤링 데이터 새로고침</button>
+            </div>
+        </div>
+        <div id="posts" class="cards empty">버튼을 눌러 최신 크롤링 데이터를 확인하세요.</div>
+    </section>
+</main>
+
+<footer>
+    <p>JobRoadMap — 데이터 기반 맞춤 학습 가이드</p>
+</footer>
+<script src="script.js"></script>
+</body>
+</html>
