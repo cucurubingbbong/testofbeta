@@ -4,6 +4,8 @@ import com.jrm.app.model.RoadmapRequest;
 import com.jrm.app.model.RoadmapResponse;
 import com.jrm.app.model.RoadmapStep;
 import com.jrm.app.model.WeekPlan;
+import com.jrm.app.service.AiAdapter;
+import com.jrm.app.service.JdFetcher;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -15,6 +17,14 @@ import java.util.stream.Collectors;
 
 @Service
 public class RoadmapEngine {
+
+    private final JdFetcher jdFetcher;
+    private final AiAdapter aiAdapter;
+
+    public RoadmapEngine(JdFetcher jdFetcher, AiAdapter aiAdapter) {
+        this.jdFetcher = jdFetcher;
+        this.aiAdapter = aiAdapter;
+    }
 
     private static final Map<String, List<String>> PREREQUISITES = Map.of(
             "spring", List.of("Java OOP", "HTTP", "MVC", "Database basics"),
@@ -35,7 +45,8 @@ public class RoadmapEngine {
     );
 
     public RoadmapResponse generate(RoadmapRequest request) {
-        List<String> keywords = extractKeywords(request.getJdText());
+        String jdBody = jdFetcher.resolveJdText(request.getJdText(), request.getJdUrl());
+        List<String> keywords = extractKeywords(jdBody);
         int durationWeeks = Math.max(4, request.getDurationMonths() * 4);
 
         List<Integer> stepWeekAllocation = distributeWeeks(durationWeeks);
@@ -114,7 +125,8 @@ public class RoadmapEngine {
         for (int i = 0; i < totalWeeks; i++) {
             String keyword = limitedKeywords.get(i % limitedKeywords.size());
             List<String> topics = PREREQUISITES.getOrDefault(keyword, List.of(keyword + " 기본기"));
-            plans.add(new WeekPlan(startWeek + i, topics, keyword.toUpperCase(Locale.ROOT) + " 튜토리얼 완주"));
+            String mission = aiAdapter.summarizeTopics(topics).stream().findFirst().orElse("튜토리얼 완주");
+            plans.add(new WeekPlan(startWeek + i, topics, mission));
         }
         return plans;
     }

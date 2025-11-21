@@ -6,8 +6,9 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 public class RoadmapRequest {
-    @NotBlank
     private String jdText;
+
+    private String jdUrl;
 
     @NotNull
     @Min(1)
@@ -28,6 +29,14 @@ public class RoadmapRequest {
 
     public void setJdText(String jdText) {
         this.jdText = jdText;
+    }
+
+    public String getJdUrl() {
+        return jdUrl;
+    }
+
+    public void setJdUrl(String jdUrl) {
+        this.jdUrl = jdUrl;
     }
 
     public Integer getDurationMonths() {
