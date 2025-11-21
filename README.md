@@ -4,8 +4,9 @@
 
 ## 구성
 - **backend/**: Java 17 + Spring Boot 3.3 기반 REST API
-  - `/api/roadmap/from-jd` : JD 텍스트 기반 로드맵 생성
+  - `/api/roadmap/from-jd` : JD 텍스트/URL 기반 로드맵 생성 (Jsoup 파싱)
   - `/api/crawl/daily` : 샘플 HTML을 크롤링해 키워드/공고 목록 제공
+  - `/api/auth`, `/api/profile`, `/api/attendance`, `/api/community` : 데모용 인증/저장/출석/커뮤니티
 - **frontend/**: HTML/CSS/Vanilla JS 기반 멀티 페이지
   - `index.html`: 화이트/블루 톤 랜딩 페이지
   - `builder.html`: JD URL/텍스트 입력, 로드맵 생성/저장
@@ -31,9 +32,17 @@
      ```
    - 브라우저에서 `http://localhost:8000`에 접속합니다.
 
-3. **사용 흐름**
+3. **AI API 키 연결 (옵션)**
+   - 외부 AI API를 붙여 실습 미션을 생성하려면 아래처럼 환경 변수를 주입하거나 `backend/src/main/resources/application.properties`에 값을 설정합니다.
+     ```bash
+     export AI_API_URL="https://api.your-llm.com/generate"
+     export AI_API_KEY="YOUR_KEY"
+     ```
+   - `AiAdapter`가 `topics` 배열을 `missions` 배열로 돌려주는 JSON 응답을 기대하며, 키를 설정하지 않으면 내부 기본 미션 문구로 대체합니다.
+
+4. **사용 흐름**
    - `frontend`를 띄운 뒤 **로드맵 생성** 페이지에서 URL 또는 텍스트를 입력하고 준비 기간/레벨을 고른 뒤 **로드맵 생성하기**를 누릅니다.
-   - JD URL이 제공되면 Jsoup으로 본문을 크롤링하고, 추출 키워드를 기반으로 외부 AI API 연동 지점을 통해 미션 텍스트를 생성하도록 구성되어 있습니다(샘플 환경에서는 간단한 요약으로 대체).
+   - JD URL이 제공되면 Jsoup으로 본문을 크롤링하고, 추출 키워드를 기반으로 `AiAdapter`가 외부 AI API를 호출합니다(키를 넣지 않으면 기본 요약으로 대체).
    - 로그인(샘플 토큰 발급) 후 **로그인 후 저장** 버튼으로 내 로드맵을 저장하고, **내 로드맵** 페이지에서 진행률/출석체크를 확인합니다.
    - **정보공유** 페이지에서 게시글을 작성하거나 기존 글을 확인해 자료를 공유할 수 있습니다.
 
