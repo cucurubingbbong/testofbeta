@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JobRoadMap | 로드맵 생성</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="builder">
+    <!-- 공통 상단 네비게이션 -->
+    <nav class="top-nav">
+        <div class="brand">JobRoadMap</div>
+        <div class="nav-links">
+            <a href="index.html">홈</a>
+            <a href="builder.html" class="active">로드맵 생성</a>
+            <a href="my-roadmaps.html">내 로드맵</a>
+            <a href="community.html">정보공유</a>
+        </div>
+        <div class="nav-actions">
+            <button id="navLogin">로그인</button>
+            <button class="ghost" id="navLogout">로그아웃</button>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero__copy">
+            <p class="eyebrow">JD URL/텍스트 입력</p>
+            <h1>채용공고를 붙여넣고 화이트·블루 톤 UI에서 로드맵을 받아보세요</h1>
+            <p class="sub">URL 파싱 → 키워드 추출 → AI 미션 생성까지 한 번에 데모합니다. 준비 기간과 레벨을 조정해보세요.</p>
+            <div class="actions">
+                <button class="button ghost" id="fillSample">샘플 공고 불러오기</button>
+                <button class="button" id="fetchPostsHero">오늘의 크롤링 보기</button>
+            </div>
+        </div>
+        <div class="hero__panel glass">
+            <p class="eyebrow">생성 상태</p>
+            <p id="formStatus">URL 또는 텍스트를 넣고 시작하세요.</p>
+            <button class="button" id="generate">로드맵 생성하기</button>
+            <button class="button ghost" id="saveRoadmap">로그인 후 저장</button>
+        </div>
+    </header>
+
+    <main class="panel">
+        <!-- 입력 폼: URL/텍스트 탭 전환 -->
+        <section class="card">
+            <div class="panel__header">
+                <div>
+                    <p class="eyebrow">입력 방식</p>
+                    <h2>채용공고 URL / 텍스트</h2>
+                </div>
+                <div id="jdTabs" class="tabs">
+                    <button class="active" data-tab="url">URL로 입력</button>
+                    <button data-tab="text">텍스트로 입력</button>
+                </div>
+            </div>
+
+            <div class="tab-content active" data-tab="url">
+                <label for="jdUrl">채용공고 URL</label>
+                <input id="jdUrl" type="text" placeholder="https://company.com/job/123" />
+            </div>
+
+            <div class="tab-content" data-tab="text">
+                <label for="jdText">채용공고 전문</label>
+                <textarea id="jdText" rows="6" placeholder="채용공고 전문을 붙여넣으세요"></textarea>
+            </div>
+
+            <div class="grid-3 compact">
+                <label>준비 기간(개월)
+                    <select id="duration">
+                        <option value="3">3</option>
+                        <option value="6" selected>6</option>
+                        <option value="12">12</option>
+                    </select>
+                </label>
+                <label>하루 학습 시간
+                    <input id="hours" type="number" min="1" max="8" value="2" />
+                </label>
+                <label>현재 레벨
+                    <select id="level">
+                        <option value="beginner">입문</option>
+                        <option value="intermediate" selected>토이 1~2개</option>
+                        <option value="advanced">실무 1년+</option>
+                    </select>
+                </label>
+            </div>
+        </section>
+
+        <!-- 생성된 로드맵 출력 영역 -->
+        <section class="card">
+            <div class="panel__header">
+                <div>
+                    <p class="eyebrow">결과</p>
+                    <h2>주차별 로드맵</h2>
+                </div>
+                <p id="roadmapMeta" class="muted"></p>
+            </div>
+            <div id="roadmap" class="grid-2 empty">
+                <p class="empty">로드맵을 생성하면 여기에서 볼 수 있어요.</p>
+            </div>
+        </section>
+
+        <!-- 크롤링된 공고 미리보기 -->
+        <section class="card">
+            <div class="panel__header">
+                <div>
+                    <p class="eyebrow">크롤링</p>
+                    <h2>오늘의 공고 키워드</h2>
+                </div>
+                <button class="button ghost" id="fetchPostsRefresh">새로고침</button>
+            </div>
+            <div id="posts" class="grid-3 empty">
+                <p class="empty">샘플 크롤링 데이터를 불러와주세요.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>JRM — JD URL 파싱 & AI 미션 자동화</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>

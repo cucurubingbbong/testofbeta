@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JobRoadMap | 정보공유</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="community">
+<!-- 공통 상단 네비게이션 -->
+<nav class="top-nav">
+    <div class="brand">JobRoadMap</div>
+    <div class="nav-links">
+        <a href="index.html">홈</a>
+        <a href="builder.html">로드맵 생성</a>
+        <a href="my-roadmaps.html">내 로드맵</a>
+    </div>
+    <div class="nav-actions">
+        <button id="navLogin">로그인</button>
+        <button class="ghost" id="navLogout">로그아웃</button>
+    </div>
+</nav>
+
+<!-- 커뮤니티 히어로 -->
+<header class="hero light compact">
+    <div class="hero__copy">
+        <p class="eyebrow">정보공유</p>
+        <h1>커뮤니티에서 학습 팁과 자료를 나누세요</h1>
+        <p class="sub">로그인 후 글을 남기고, 다른 참가자들이 남긴 자료를 참고하세요.</p>
+    </div>
+</header>
+
+<main>
+    <!-- 글 작성 폼 -->
+    <section class="panel">
+        <div class="panel__header">
+            <div>
+                <p class="eyebrow">글 작성</p>
+                <h2>공유하기</h2>
+            </div>
+        </div>
+        <div class="grid-2">
+            <label class="field"><span>제목</span><input id="postTitle" type="text" placeholder="제목을 입력하세요"></label>
+            <label class="field"><span>내용</span><textarea id="postContent" rows="4" placeholder="학습 후기, 자료 링크 등을 남겨보세요"></textarea></label>
+        </div>
+        <button id="postSubmit">등록하기</button>
+        <p id="postStatus" class="status"></p>
+    </section>
+
+    <!-- 글 목록 -->
+    <section class="panel">
+        <div class="panel__header">
+            <div>
+                <p class="eyebrow">커뮤니티</p>
+                <h2>최신 글</h2>
+            </div>
+            <button id="refreshPosts">새로고침</button>
+        </div>
+        <div id="communityPosts" class="cards empty">첫 글을 작성해보세요.</div>
+    </section>
+</main>
+
+<footer>
+    <p>JobRoadMap — 정보 공유 허브</p>
+</footer>
+<script src="script.js"></script>
+</body>
+</html>
