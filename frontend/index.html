@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JobRoadMap | 홈</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="home">
+    <nav class="top-nav">
+        <div class="brand">JobRoadMap</div>
+        <div class="nav-links">
+            <a href="builder.html">로드맵 생성</a>
+            <a href="my-roadmaps.html">내 로드맵</a>
+            <a href="community.html">정보공유</a>
+        </div>
+        <div class="nav-actions">
+            <button id="navLogin">로그인</button>
+            <button class="ghost" id="navLogout">로그아웃</button>
+        </div>
+    </nav>
+
+    <header class="hero light">
+        <div class="hero__copy">
+            <p class="eyebrow">대회용 맞춤 IT 학습 가이드</p>
+            <h1>채용공고 URL/텍스트를 붙여넣으면 주차별 로드맵이 완성됩니다</h1>
+            <p class="sub">JD 파싱 + 크롤링 + 외부 AI 호출 흐름을 한 번에 체험하세요. 준비 기간과 레벨을 설정하면 실습 미션까지 자동 제안합니다.</p>
+            <div class="chips">
+                <span class="chip">JD URL 파싱</span>
+                <span class="chip">AI 미션 요약</span>
+                <span class="chip">출석체크</span>
+                <span class="chip">커뮤니티 공유</span>
+            </div>
+            <div class="actions">
+                <a class="button" href="builder.html">바로 로드맵 만들기</a>
+                <a class="button ghost" href="community.html">정보공유 둘러보기</a>
+            </div>
+        </div>
+        <div class="hero__panel glass">
+            <h2>오늘의 모듈</h2>
+            <ul class="checklist">
+                <li>채용 공고 URL을 붙여넣고 로드맵 생성</li>
+                <li>로그인 후 로드맵 저장 & 진행률 표시</li>
+                <li>출석체크로 학습 연속성 관리</li>
+                <li>커뮤니티에서 정보 공유/질문</li>
+            </ul>
+        </div>
+    </header>
+
+    <section class="panel">
+        <div class="panel__header">
+            <div>
+                <p class="eyebrow">페이지 구성</p>
+                <h2>기능 맵</h2>
+            </div>
+        </div>
+        <div class="grid-3">
+            <div class="card">
+                <h3>로드맵 생성</h3>
+                <p>JD 텍스트/URL, 기간, 레벨을 넣으면 AI 기반 미션이 포함된 주차별 플랜을 생성합니다.</p>
+            </div>
+            <div class="card">
+                <h3>내 로드맵</h3>
+                <p>로그인 상태에서 로드맵을 저장하고 진행률·출석체크를 한곳에서 관리합니다.</p>
+            </div>
+            <div class="card">
+                <h3>정보공유</h3>
+                <p>커뮤니티 탭에서 학습 후기와 자료를 남기고, AI 추천 미션과 함께 성장하세요.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>JobRoadMap — White & Blue UI for AI-less vibe</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>

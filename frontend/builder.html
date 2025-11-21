@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JobRoadMap | 로드맵 생성</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="builder">
+<nav class="top-nav">
+    <div class="brand">JobRoadMap</div>
+    <div class="nav-links">
+        <a href="index.html">홈</a>
+        <a href="my-roadmaps.html">내 로드맵</a>
+        <a href="community.html">정보공유</a>
+    </div>
+    <div class="nav-actions">
+        <button id="navLogin">로그인</button>
+        <button class="ghost" id="navLogout">로그아웃</button>
+    </div>
+</nav>
+
+<header class="hero light compact">
+    <div class="hero__copy">
+        <p class="eyebrow">JD 입력</p>
+        <h1>URL 또는 텍스트로 맞춤 로드맵 생성</h1>
+        <p class="sub">외부 AI API와 연동되는 미션 제안, 크롤링된 키워드 기반 맞춤 플랜을 바로 확인하세요.</p>
+    </div>
+</header>
+
+<main>
+    <section class="panel">
+        <div class="tabs" id="jdTabs">
+            <button data-tab="url" class="active">URL로 입력</button>
+            <button data-tab="text">텍스트로 입력</button>
+        </div>
+        <div class="tab-content active" data-tab="url">
+            <label class="field"><span>채용공고 URL</span>
+                <input id="jdUrl" type="url" placeholder="https://example.com/job/123" />
+            </label>
+        </div>
+        <div class="tab-content" data-tab="text">
+            <label class="field"><span>채용공고 전문</span>
+                <textarea id="jdText" rows="6" placeholder="채용 공고 텍스트를 붙여넣으세요"></textarea>
+            </label>
+            <button id="fillSample" class="ghost">샘플 JD 불러오기</button>
+        </div>
+        <div class="grid-3">
+            <label class="field"><span>준비 기간 (개월)</span><input id="duration" type="number" value="6" min="1" max="12"></label>
+            <label class="field"><span>하루 학습 시간</span><input id="hours" type="number" value="3" min="1" max="8"></label>
+            <label class="field"><span>현재 실력</span>
+                <select id="level">
+                    <option>완전 입문</option>
+                    <option>문법만 살짝</option>
+                    <option>토이 프로젝트 1개</option>
+                    <option>사이드 프로젝트 경험 있음</option>
+                </select>
+            </label>
+        </div>
+        <div class="actions">
+            <button id="generate">로드맵 생성하기</button>
+            <button id="saveRoadmap" class="ghost">로그인 후 저장</button>
+        </div>
+        <p id="formStatus" class="status"></p>
+    </section>
+
+    <section class="panel" id="roadmapSection">
+        <div class="panel__header">
+            <div>
+                <p class="eyebrow">주차별 플랜</p>
+                <h2>로드맵 결과</h2>
+            </div>
+            <div class="meta" id="roadmapMeta"></div>
+        </div>
+        <div id="roadmap" class="timeline empty">JD를 입력하고 로드맵을 생성해 보세요.</div>
+    </section>
+
+    <section class="panel">
+        <div class="panel__header">
+            <div>
+                <p class="eyebrow">크롤링</p>
+                <h2>최근 공고 & 키워드</h2>
+            </div>
+            <button id="fetchPosts">새로고침</button>
+        </div>
+        <div id="posts" class="cards empty">버튼을 눌러 최신 크롤링 데이터를 확인하세요.</div>
+    </section>
+</main>
+
+<footer>
+    <p>JobRoadMap — JD URL 파싱 & AI 미션 제안</p>
+</footer>
+<script src="script.js"></script>
+</body>
+</html>
